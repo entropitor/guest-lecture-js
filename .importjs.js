@@ -12,7 +12,8 @@ module.exports = {
       "List",
       "Quote",
       "Slide",
-      "Text"
+      "Text",
+      "Notes"
     ]
   }
 };

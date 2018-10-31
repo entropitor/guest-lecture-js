@@ -1,9 +1,9 @@
 1. Syntax examples (let/const, functions, arrow functions, classes)
 2. Prototype-based inheritance
    a. What is a prototype (https://en.wikipedia.org/wiki/Prototype-based_programming)
-   b. Copy vs delegation
+   b. How this translates into diagrams (which objects point to which)
    c. How to express this in code
-   d. How this translates into diagrams (which objects point to which)
+   d. Copy vs delegation
    e. Application 1 (copy): mixins
    f. Application 2 (delegation): change class at run-time
    g. Class-syntax? How does it map to prototype based syntax

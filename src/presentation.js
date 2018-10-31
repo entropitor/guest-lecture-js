@@ -19,7 +19,7 @@ const theme = createTheme(
     primary: "#2D2D2D",
     secondary: "#999999",
     tertiary: "#718c00",
-    quaternary: "#999999"
+    quaternary: "#6699cc"
   },
   {
     primary: "Montserrat",
