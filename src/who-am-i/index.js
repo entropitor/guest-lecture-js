@@ -1,15 +1,6 @@
 import * as React from "react";
-import {
-  BlockQuote,
-  Cite,
-  Deck,
-  Heading,
-  ListItem,
-  List,
-  Quote,
-  Slide,
-  Text
-} from "spectacle";
+
+import { Heading, ListItem, List, Slide } from "spectacle";
 
 export default class WhoAmI extends React.Component {
   render() {

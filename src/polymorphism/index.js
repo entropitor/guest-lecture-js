@@ -1,15 +1,6 @@
 import * as React from "react";
-import {
-  BlockQuote,
-  Cite,
-  Deck,
-  Heading,
-  ListItem,
-  List,
-  Quote,
-  Slide,
-  Text
-} from "spectacle";
+
+import { Heading, Slide } from "spectacle";
 
 export default class Polymorphism extends React.Component {
   render() {
