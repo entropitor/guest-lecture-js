@@ -1,5 +1,3 @@
-require("normalize.css");
-
 import React from "react";
 
 import { Deck, Heading, ListItem, List, Slide } from "spectacle";
@@ -13,6 +11,8 @@ import Polymorphism from "./polymorphism";
 import Promises from "./promises";
 import Quirks from "./quirks";
 import WhoAmI from "./who-am-i";
+
+require("normalize.css");
 
 const theme = createTheme(
   {
@@ -48,7 +48,7 @@ export default class Presentation extends React.Component {
           </List>
         </Slide>
         <WhoAmI />
-        <JavascriptSyntax />
+        {JavascriptSyntax}
         <Polymorphism />
         <Generators />
         <Promises />
