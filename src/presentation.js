@@ -47,14 +47,14 @@ export default class Presentation extends React.Component {
             <ListItem>Quirks</ListItem>
           </List>
         </Slide>
-        <WhoAmI />
+        {WhoAmI}
         {JavascriptSyntax}
-        <Polymorphism />
-        <Generators />
-        <Promises />
-        <Babel />
-        <Quirks />
-        <AboutDataCamp />
+        {Polymorphism}
+        {Generators}
+        {Promises}
+        {Babel}
+        {Quirks}
+        {AboutDataCamp}
       </Deck>
     );
   }

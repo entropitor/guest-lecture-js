@@ -1,15 +1,9 @@
-import * as React from "react";
+import React from 'react';
 
 import { Heading, Slide } from 'spectacle';
 
-export default class Promises extends React.Component {
-  render() {
-    return (
-      <React.Fragment>
-        <Slide>
-          <Heading>Promises</Heading>
-        </Slide>
-      </React.Fragment>
-    );
-  }
-}
+export default [
+  <Slide>
+    <Heading>Promises</Heading>
+  </Slide>
+]
