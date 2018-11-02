@@ -3,10 +3,10 @@
    a. What is a prototype (https://en.wikipedia.org/wiki/Prototype-based_programming)
    b. How this translates into diagrams (which objects point to which)
    c. How to express this in code
-   d. Copy vs delegation
-   e. Application 1 (copy): mixins
-   f. Application 2 (delegation): change class at run-time
-   g. Class-syntax? How does it map to prototype based syntax
+   d. Class-syntax? How does it map to prototype based syntax
+   e. Copy vs delegation
+   f. Application 1 (copy): mixins
+   g. Application 2 (delegation): change class at run-time
 3. Generators:
    a. The concept
    b. Use case 1: Lazy computation
