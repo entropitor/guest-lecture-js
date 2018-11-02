@@ -13,7 +13,8 @@ module.exports = {
       "Quote",
       "Slide",
       "Text",
-      "Notes"
+      "Notes",
+      "CodePane"
     ]
   }
 };

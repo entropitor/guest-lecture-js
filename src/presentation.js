@@ -1,6 +1,8 @@
+import { introConvertedSnippet } from "./generators/iteratorSnippets";
+
 import React from "react";
 
-import { Deck, Heading, ListItem, List, Slide } from "spectacle";
+import { Deck, Heading, ListItem, List, Slide, CodePane } from "spectacle";
 import createTheme from "spectacle/lib/themes/default";
 
 import AboutDataCamp from "./about-datacamp";
