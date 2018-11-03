@@ -13,8 +13,9 @@
    c. Use case 2: Infinite lists
    d. Use case 3: Effectfull programming
    e. Use case 4: Monads using generators (https://curiosity-driven.org/monads-in-javascript)
-   f. Use case 5: Maybe Monad
-   g. Use case 6: Continutation Monad
+   f. Use case 5: List Monad
+   g. Use case 6: Maybe Monad
+   h. Use case 7: Continutation Monad
 4. Continuation Monad === Promises
    a. Show the real syntax
    b. Touch upon async generators

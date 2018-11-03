@@ -37,7 +37,7 @@ x.next();
 `.trim();
 export const introConvertedSnippet = `
 function myGen() {
-  const x = {
+  return {
     next: function() {
       this.next = function() {
         this.next = function() {
@@ -49,9 +49,18 @@ function myGen() {
       };
       console.log("before yield");
       return { done: false, value: 1 };
+    },
+    [Symbol.iterator]() {
+      return this;
     }
   };
-  x[Symbol.iterator] = () => x;
-  return x;
+}
+`.trim();
+export const treeSnippet = `
+function* traverseTree(node) {
+  if (node == null) return;
+  yield* traverseTree(node.left);
+  yield node.value;
+  yield* traverseTree(node.right);
 }
 `.trim();

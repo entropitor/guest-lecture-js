@@ -3,6 +3,7 @@ import React from "react";
 
 import { CodePane, Heading, List, ListItem, Notes, Slide } from "spectacle";
 
+import { advancedIteratorSnippet, rngSnippet } from "./effectsSnippet";
 import {
   exampleInfiniteListSnippet,
   integratedFibonnaciSnippet,
@@ -14,10 +15,11 @@ import {
 import {
   introConvertedSnippet,
   introSnippet,
-  iteratorSnippet
+  iteratorSnippet,
+  treeSnippet
 } from "./iteratorSnippets";
 
-export default [
+const introSlides = [
   <Slide>
     <Heading>Generators</Heading>
   </Slide>,
@@ -51,7 +53,7 @@ export default [
     lang="js"
     code={introConvertedSnippet}
     ranges={[
-      { loc: [15, 16] },
+      { loc: [14, 17] },
       { loc: [2, 14] },
       { loc: [11, 13] },
       { loc: [3, 11] },
@@ -59,6 +61,12 @@ export default [
       { loc: [4, 8] }
     ]}
   />,
+  <Slide>
+    <CodePane textSize={25} lang="js" source={treeSnippet} theme="external" />
+    <Notes>Example spreading of generator</Notes>
+  </Slide>
+];
+const fibonnaciSlides = [
   <Slide>
     <Heading textSize={200}>🔧</Heading>
     <Heading size={2}>Let's build something!</Heading>
@@ -122,3 +130,37 @@ export default [
     <Notes>Full pipeline, not single responsability</Notes>
   </Slide>
 ];
+const effectsSlides = [
+  <Slide>
+    <Heading textSize={200}>🦅</Heading>
+    <Heading size={2}>Let's spread our wings even more!</Heading>
+    <Notes>Let's learn about some advanced generators</Notes>
+  </Slide>,
+  <Slide>
+    <CodePane textSize={25} lang="js" source={rngSnippet} theme="external" />
+    <Notes>
+      Does anybody recognize this algorithm? java.util.Random! Wouldn't it be
+      awesome if we could set the next x value?
+    </Notes>
+  </Slide>,
+  // <Slide>
+  //   <CodePane
+  //     textSize={25}
+  //     lang="js"
+  //     source={advancedIteratorSnippet}
+  //     theme="external"
+  //   />
+  //   <Notes>We can provide this value by rng.next(3)</Notes>
+  // </Slide>,
+  <CodeSlide
+    lang="js"
+    code={advancedIteratorSnippet}
+    ranges={[{ loc: [7, 11] }]}
+  />,
+  <Slide>
+    <Heading textSize={200}>🔧</Heading>
+    <Heading size={2}>Let's build Eff-Lang!</Heading>
+    <Notes>Let's build eff-lang in JS (http://www.eff-lang.org/)</Notes>
+  </Slide>
+];
+export default [...introSlides, ...fibonnaciSlides, ...effectsSlides];
