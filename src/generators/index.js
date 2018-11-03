@@ -16,8 +16,22 @@ import {
   advancedIteratorSnippet,
   algebraicEffects,
   cloneableSnippet,
-  rngSnippet
+  rngSnippet,
+  with_Snippet
 } from "./effectsSnippet";
+import {
+  asyncIntroSnippet,
+  asyncRealSnippet,
+  cloneableMonadSnippet,
+  doMSnippet,
+  fakeCloneableSnippet,
+  listMonadSnippet,
+  maybeMonadDefinitionSnippet,
+  maybeMonadUsageSnippet,
+  promiseMonadDefinitionSnippet,
+  promiseMonadUsageSnippet,
+  promiseNonMonadUsageSnippet
+} from "./monadSnippet";
 import {
   exampleInfiniteListSnippet,
   integratedFibonnaciSnippet,
@@ -190,15 +204,6 @@ const effectsSlides = [
       awesome if we could set the next x value?
     </Notes>
   </Slide>,
-  // <Slide>
-  //   <CodePane
-  //     textSize={25}
-  //     lang="js"
-  //     source={advancedIteratorSnippet}
-  //     theme="external"
-  //   />
-  //   <Notes>We can provide this value by rng.next(3)</Notes>
-  // </Slide>,
   <CodeSlide
     lang="js"
     code={advancedIteratorSnippet}
@@ -278,4 +283,182 @@ const effectsSlides = [
     <Notes>Algebraic effects</Notes>
   </Slide>
 ];
-export default [...introSlides, ...fibonnaciSlides, ...effectsSlides];
+const monadSlides = [
+  <Slide>
+    <Heading textSize={200}>🔧</Heading>
+    <Heading size={2}>Let's build Haskell!</Heading>
+    <Notes>Let's build haskell in JS</Notes>
+  </Slide>,
+  <Slide>
+    <CodePane
+      textSize={25}
+      lang="js"
+      source={listMonadSnippet}
+      theme="external"
+    />
+  </Slide>,
+  <CodeSlide
+    lang="js"
+    code={listMonadSnippet}
+    ranges={[
+      { loc: [11, 17] },
+      { loc: [0, 11] },
+      { loc: [0, 3] },
+      { loc: [3, 11] },
+      { loc: [4, 7] },
+      { loc: [7, 10] }
+    ]}
+    notes={"listMonad"}
+  />,
+  <CodeSlide
+    lang="js"
+    code={doMSnippet}
+    ranges={[
+      { loc: [0, 13] },
+      { loc: [1, 2] },
+      { loc: [2, 3] },
+      { loc: [3, 4] },
+      { loc: [4, 12] },
+      { loc: [12, 13] },
+      { loc: [5, 8] },
+      { loc: [7, 11] }
+    ]}
+    notes={"doM"}
+  />,
+  <Slide>
+    <Layout>
+      <Fill>
+        <CodePane
+          textSize={15}
+          lang="js"
+          source={doMSnippet}
+          theme="external"
+        />
+      </Fill>
+      <Fill>
+        <CodePane
+          textSize={15}
+          lang="js"
+          source={with_Snippet}
+          theme="external"
+        />
+      </Fill>
+    </Layout>
+  </Slide>,
+  <Slide>
+    <CodePane
+      textSize={25}
+      lang="js"
+      source={maybeMonadDefinitionSnippet}
+      theme="external"
+      notes={"maybeMonad"}
+    />
+  </Slide>,
+  <Slide>
+    <CodePane
+      textSize={25}
+      lang="js"
+      source={maybeMonadUsageSnippet}
+      theme="external"
+      notes={"maybeMonad"}
+    />
+  </Slide>,
+  <Slide>
+    <CodePane
+      textSize={25}
+      lang="js"
+      source={promiseNonMonadUsageSnippet}
+      theme="external"
+    />
+  </Slide>,
+  <Slide>
+    <CodePane
+      textSize={25}
+      lang="js"
+      source={promiseMonadUsageSnippet}
+      theme="external"
+    />
+  </Slide>,
+  <Slide>
+    <CodePane
+      textSize={25}
+      lang="js"
+      source={promiseMonadDefinitionSnippet}
+      theme="external"
+    />
+  </Slide>,
+  <Slide>
+    <CodePane
+      textSize={25}
+      lang="js"
+      source={asyncIntroSnippet}
+      theme="external"
+    />
+  </Slide>,
+  <Slide>
+    <CodePane
+      textSize={25}
+      lang="js"
+      source={asyncRealSnippet}
+      theme="external"
+    />
+  </Slide>,
+  <Slide>
+    <Layout>
+      <Fill>
+        <CodePane
+          textSize={15}
+          lang="js"
+          source={asyncIntroSnippet}
+          theme="external"
+        />
+      </Fill>
+      <Fill>
+        <CodePane
+          textSize={15}
+          lang="js"
+          source={asyncRealSnippet}
+          theme="external"
+        />
+      </Fill>
+    </Layout>
+  </Slide>,
+  <Slide>
+    <Layout>
+      <Fill>
+        <CodePane
+          textSize={15}
+          lang="js"
+          source={cloneableMonadSnippet}
+          theme="external"
+        />
+      </Fill>
+      <Fill>
+        <CodePane
+          textSize={15}
+          lang="js"
+          source={fakeCloneableSnippet}
+          theme="external"
+        />
+      </Fill>
+    </Layout>
+  </Slide>
+];
+const whatNotSlides = [
+  <Slide>
+    <Heading size={2}>What did I leave out?</Heading>
+    <List>
+      <ListItem>generators.throw()</ListItem>
+      <ListItem>Promise.reject()</ListItem>
+      <ListItem>Promise collapse (bind !== then)</ListItem>
+      <ListItem>Async generators</ListItem>
+    </List>
+  </Slide>
+];
+export default [
+  ...introSlides,
+  ...fibonnaciSlides,
+  ...effectsSlides,
+  ...monadSlides,
+  ...whatNotSlides
+];

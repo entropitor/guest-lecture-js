@@ -52,14 +52,7 @@ function cloneable(generatorFn) {
   };
 }
 `.trim();
-export const algebraicEffects = `
-class Effect {
-  constructor(name) {
-    this.symbol = Symbol(name);
-  }
-}
-const Decide = new Effect("decide");
-
+export const with_Snippet = `
 function with_(handler, generatorFn) {
   const iterator = cloneable(generatorFn);
   function recursionStep({ value, done, iterator }) {
@@ -69,12 +62,22 @@ function with_(handler, generatorFn) {
     }
     else {
       const handle = handler[value.symbol] || (_ => { throw new Error() });
-      const k = nextVal => recursionStep(iterator.clone().next(nextVal));
+      const k = val => recursionStep(iterator.clone().next(val));
       return handle(k);
     }
   }
   return recursionStep(iterator.next());
 }
+`.trim();
+export const algebraicEffects = `
+class Effect {
+  constructor(name) {
+    this.symbol = Symbol(name);
+  }
+}
+const Decide = new Effect("decide");
+
+${with_Snippet}
 
 let continue_ = function(cont, expVal) {
   return cont(expVal);

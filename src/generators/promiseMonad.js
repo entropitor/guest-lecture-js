@@ -1,4 +1,3 @@
-export const cloneableMonadSnippet = `
 function cloneable(generatorFn) {
   const values = [];
   const iterator = generatorFn();
@@ -19,8 +18,6 @@ function cloneable(generatorFn) {
     }
   };
 }
-`.trim();
-export const fakeCloneableSnippet = `
 function fakeCloneable(generatorFn) {
   const iterator = generatorFn();
   return {
@@ -32,8 +29,6 @@ function fakeCloneable(generatorFn) {
     }
   };
 }
-`.trim();
-export const doMSnippet = `
 function doM(monad, generatorFn) {
   const cloneable_ = monad.forbidCloning ? fakeCloneable : cloneable;
   const generatorFn_ = generatorFn.bind(monad);
@@ -48,54 +43,7 @@ function doM(monad, generatorFn) {
   }
   return recursionStep(iterator.next());
 }
-`.trim();
-export const listMonadSnippet = `
-function flattenArray(arr) {
-  return arr.reduce((acc, val) => acc.concat([...val]), []);
-}
-const listMonad = {
-  return(x) {
-    return [x];
-  },
-  bind(xs, fn) {
-    return flattenArray(xs.map(x => fn(x)));
-  }
-};
-function* doBlockList() {
-  const x = yield [10, 20];
-  const y = yield [0, 5];
-  return this.return(x - y);
-}
-console.log(doM(listMonad, doBlockList));
-`.trim();
 
-export const maybeMonadDefinitionSnippet = `
-const just = x => ({ type: "just", value: x });
-const nothing = { type: "nothing" };
-const maybeMonad = {
-  return(x) {
-    return just(x);
-  },
-  bind(x, fn) {
-    if (x.type === "nothing") {
-      return nothing;
-    } else {
-      return fn(x.value);
-    }
-  }
-};
-`.trim();
-export const maybeMonadUsageSnippet = `
-function* doBlockMaybe() {
-  const x = yield just(3);
-  const z = yield nothing;
-  const y = yield this.return(5);
-  return this.return(x + y);
-}
-console.log(doM(maybeMonad, doBlockMaybe));
-`.trim();
-
-export const promiseMonadDefinitionSnippet = `
 const promiseMonad = {
   forbidCloning: true,
   return(x) {
@@ -112,32 +60,14 @@ const getFromNetwork = url => {
     }, 5000);
   });
 };
-`.trim();
-export const promiseNonMonadUsageSnippet = `
-function doSomethingAsync() {
-  return Promise
-    .resolve("https://google.be")
-    .then(url => getFromNetwork(url))
-    .then(google => {
-      console.log(google);
-      return getFromNetwork("https://facebook.com")
-    })
-    .then(fb => {
-      console.log(fb);
-    })
-}
-`.trim();
-export const promiseMonadUsageSnippet = `
 function* doBlockPromise() {
   const url = yield this.return("https://google.be");
   const google = yield getFromNetwork(url);
   console.log(google);
   const fb = yield getFromNetwork("https://facebook.com");
   console.log(fb);
+  return this.return(null);
 }
-console.log(doM(promiseMonad, doBlockPromise));
-`.trim();
-export const asyncIntroSnippet = `
 function async(generator) {
   return () => doM(promiseMonad, generator);
 }
@@ -147,13 +77,14 @@ const doBlockPromiseAsync = async(function* doBlockPromise() {
   console.log(google);
   const fb = yield getFromNetwork("https://facebook.com");
   console.log(fb);
-});`.trim();
-export const asyncRealSnippet = `
-const doBlockPromiseAsync2 = async function () {
+  return null;
+});
+async function doBlockPromiseAsync2() {
   const url = await "https://google.be";
   const google = await getFromNetwork(url);
   console.log(google);
   const fb = await getFromNetwork("https://facebook.com");
   console.log(fb);
+  return null;
 }
-`.trim();
+console.log(doM(promiseMonad, doBlockPromise));

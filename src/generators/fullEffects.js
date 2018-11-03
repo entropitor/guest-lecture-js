@@ -36,7 +36,7 @@ function with_(handler, generatorFn) {
         (_ => {
           throw new Error();
         });
-      const k = nextVal => recursionStep(iterator.clone().next(nextVal));
+      const k = val => recursionStep(iterator.clone().next(val));
       return handle(k);
     }
   }

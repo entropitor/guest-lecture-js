@@ -52,9 +52,9 @@ const slides = [
   JavascriptSyntax,
   Polymorphism,
   Generators,
-  Promises,
-  Babel,
-  Quirks,
+  // Promises,
+  // Babel,
+  // Quirks,
   AboutDataCamp
 ]
   .reduce((state, next) => [...state, ...next], [])
