@@ -24,8 +24,7 @@ function doM(monad, iterator, val = null) {
     return value;
   }
   return monad.bind(value, val => {
-    const it = iterator.clone();
-    return doM(monad, it, val);
+    return doM(monad, iterator.clone(), val);
   });
 }
 function flattenArray(arr) {

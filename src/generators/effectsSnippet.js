@@ -30,50 +30,14 @@ const myRandom = rng()
 myRandom.next()
 myRandom.next(3)
 `.trim();
-export const algebraicEffects = `
-`.trim();
-
-function Effect(name) {
-  this.symbol = Symbol(name);
-  this[Effect.symbol] = this.symbol;
-}
-Effect.symbol = Symbol("Effect");
-const Value = new Effect("value");
-
-const Fail = new Effect("fail");
-const Decide = new Effect("decide");
-let continue_ = function(k, ...args) {
-  return k(...args);
-};
-let chooseTrue = {
-  [Decide.symbol](k) {
-    return continue_(k, true);
-  }
-};
-let chooseMax = {
-  [Decide.symbol](k) {
-    return Math.max(continue_(k, true), continue_(k, false));
-  }
-};
-let chooseAll = {
-  [Value.symbol](value) {
-    return [value];
-  },
-  [Fail.symbol](_) {
-    return [];
-  },
-  [Decide.symbol](k) {
-    return [...continue_(k, true), ...continue_(k, false)];
-  }
-};
-
+export const cloneableSnippet = `
 function cloneable(iteratorFn) {
   const values = [];
   const iterator = iteratorFn();
   return {
     next(val) {
       values.push(val);
-      return iterator.next(val);
+      return { ...iterator.next(val), iterator: this };
     },
     clone() {
       const it = cloneable(iteratorFn);
@@ -87,38 +51,60 @@ function cloneable(iteratorFn) {
     }
   };
 }
+`.trim();
+export const algebraicEffects = `
+class Effect {
+  constructor(name) {
+    this.symbol = Symbol(name);
+  }
+}
+const Decide = new Effect("decide");
+
+let continue_ = function(cont, expVal) {
+  return cont(expVal);
+};
+let chooseTrue = {
+  [Decide.symbol](k) {
+    return continue_(k, true);
+  }
+};
+let chooseMax = {
+  [Decide.symbol](k) {
+    return Math.max(continue_(k, true), continue_(k, false));
+  }
+};
+let chooseAll = {
+  value(value) {
+    return [value];
+  },
+  [Decide.symbol](k) {
+    return [...continue_(k, true), ...continue_(k, false)];
+  }
+};
+
 function with_(handler, iteratorFn) {
   const iterator = cloneable(iteratorFn);
-  if (handler[Value.symbol] == null) {
-    handler[Value.symbol] = val => val;
-  }
-
-  function recursionStep(handler, iterator, lastVal) {
-    const { value, done } = iterator.next(lastVal);
+  function recursionStep({ value, done, iterator }) {
     if (done) {
-      return handler[Value.symbol](value);
+      const handle = handler.value || (v => v)
+      return handle(value)
     }
-
-    const effect =
-      value[Effect.symbol] != null ? value[Effect.symbol] : Value.symbol;
-    if (handler[effect]) {
-      const k = nextVal => {
-        const it = iterator.clone();
-        return recursionStep(handler, it, nextVal);
-      };
-      return handler[effect](k);
+    else if (handler[value.symbol]) {
+      const k = nextVal => recursionStep(iterator.clone().next(nextVal));
+      return handler[value.symbol](k);
     }
-    throw new Error(`handler ${effect} not implemented`);
+    throw new Error('handler not implemented');
   }
-  return recursionStep(handler, iterator, null);
+  return recursionStep(iterator.next());
 }
 
 function* myBlock() {
   const x = (yield Decide) ? 10 : 20;
-  const y = (yield Decide) ? 1 : 5;
+  const y = (yield Decide) ? 0 : 5;
   return x - y;
 }
 
 console.log(with_(chooseTrue, myBlock));
 console.log(with_(chooseMax, myBlock));
 console.log(with_(chooseAll, myBlock));
+`.trim();

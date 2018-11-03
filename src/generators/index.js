@@ -1,9 +1,23 @@
 import CodeSlide from "spectacle-code-slide";
 import React from "react";
 
-import { CodePane, Heading, List, ListItem, Notes, Slide } from "spectacle";
+import {
+  CodePane,
+  Heading,
+  List,
+  ListItem,
+  Notes,
+  Slide,
+  Layout,
+  Fill
+} from "spectacle";
 
-import { advancedIteratorSnippet, rngSnippet } from "./effectsSnippet";
+import {
+  advancedIteratorSnippet,
+  algebraicEffects,
+  cloneableSnippet,
+  rngSnippet
+} from "./effectsSnippet";
 import {
   exampleInfiniteListSnippet,
   integratedFibonnaciSnippet,
@@ -161,6 +175,62 @@ const effectsSlides = [
     <Heading textSize={200}>🔧</Heading>
     <Heading size={2}>Let's build Eff-Lang!</Heading>
     <Notes>Let's build eff-lang in JS (http://www.eff-lang.org/)</Notes>
+  </Slide>,
+  <CodeSlide
+    lang="js"
+    code={algebraicEffects}
+    ranges={[
+      { loc: [45, 50] },
+      { loc: [51, 54] },
+      { loc: [10, 15] },
+      { loc: [15, 20] },
+      { loc: [20, 28] },
+      { loc: [0, 5] },
+      { loc: [5, 6] },
+      { loc: [7, 10] },
+      { loc: [29, 44] },
+      { loc: [30, 31] },
+      { loc: [31, 42] },
+      { loc: [42, 43] },
+      { loc: [32, 36] },
+      { loc: [36, 40] }
+    ]}
+    notes={"Algebraic effects"}
+  />,
+  <Slide>
+    <Layout>
+      <Fill>
+        <CodePane
+          textSize={12}
+          lang="js"
+          source={cloneableSnippet}
+          theme="external"
+        />
+      </Fill>
+      <Fill>
+        <CodePane
+          textSize={13}
+          lang="js"
+          source={algebraicEffects
+            .split("\n")
+            .slice(0, 28)
+            .join("\n")}
+          theme="external"
+        />
+      </Fill>
+      <Fill>
+        <CodePane
+          textSize={13}
+          lang="js"
+          source={algebraicEffects
+            .split("\n")
+            .slice(29)
+            .join("\n")}
+          theme="external"
+        />
+      </Fill>
+    </Layout>
+    <Notes>Algebraic effects</Notes>
   </Slide>
 ];
 export default [...introSlides, ...fibonnaciSlides, ...effectsSlides];
