@@ -76,6 +76,12 @@ const introSlides = [
     ]}
   />,
   <Slide>
+    <CodePane textSize={25} lang="js" source={introSnippet} theme="external" />
+    <Notes>
+      Example generator again, can be used to explain the previous code
+    </Notes>
+  </Slide>,
+  <Slide>
     <CodePane textSize={25} lang="js" source={treeSnippet} theme="external" />
     <Notes>Example spreading of generator</Notes>
   </Slide>
@@ -125,13 +131,40 @@ const fibonnaciSlides = [
     />
     <Notes>Example thing</Notes>
   </Slide>,
+  // <Slide>
+  //   <CodePane
+  //     textSize={12}
+  //     lang="js"
+  //     source={lazyFibonnaciFullSnippet}
+  //     theme="external"
+  //   />
+  //   <Notes>Full pipeline</Notes>
+  // </Slide>,
   <Slide>
-    <CodePane
-      textSize={12}
-      lang="js"
-      source={lazyFibonnaciFullSnippet}
-      theme="external"
-    />
+    <Layout>
+      <Fill>
+        <CodePane
+          textSize={20}
+          lang="js"
+          source={lazyFibonnaciFullSnippet
+            .split("\n")
+            .slice(0, 19)
+            .join("\n")}
+          theme="external"
+        />
+      </Fill>
+      <Fill>
+        <CodePane
+          textSize={20}
+          lang="js"
+          source={lazyFibonnaciFullSnippet
+            .split("\n")
+            .slice(19)
+            .join("\n")}
+          theme="external"
+        />
+      </Fill>
+    </Layout>
     <Notes>Full pipeline</Notes>
   </Slide>,
   <Slide>
@@ -169,7 +202,7 @@ const effectsSlides = [
   <CodeSlide
     lang="js"
     code={advancedIteratorSnippet}
-    ranges={[{ loc: [7, 11] }]}
+    ranges={[{ loc: [0, 16] }, { loc: [7, 11] }, { loc: [14, 17] }]}
   />,
   <Slide>
     <Heading textSize={200}>🔧</Heading>
@@ -182,18 +215,23 @@ const effectsSlides = [
     ranges={[
       { loc: [45, 50] },
       { loc: [51, 54] },
-      { loc: [10, 15] },
-      { loc: [15, 20] },
-      { loc: [20, 28] },
+      { loc: [26, 31] },
+      { loc: [31, 36] },
+      { loc: [36, 44] },
       { loc: [0, 5] },
       { loc: [5, 6] },
-      { loc: [7, 10] },
-      { loc: [29, 44] },
-      { loc: [30, 31] },
-      { loc: [31, 42] },
-      { loc: [42, 43] },
-      { loc: [32, 36] },
-      { loc: [36, 40] }
+      { loc: [23, 26] },
+      { loc: [7, 22] },
+      { loc: [8, 9] },
+      { loc: [9, 20] },
+      { loc: [20, 21] },
+      { loc: [10, 14] },
+      { loc: [14, 19] },
+      { loc: [45, 50] },
+      { loc: [51, 54] },
+      { loc: [26, 31] },
+      { loc: [31, 36] },
+      { loc: [36, 44] }
     ]}
     notes={"Algebraic effects"}
   />,
@@ -203,28 +241,35 @@ const effectsSlides = [
         <CodePane
           textSize={12}
           lang="js"
-          source={cloneableSnippet}
+          source={
+            cloneableSnippet +
+            "\n\n" +
+            algebraicEffects
+              .split("\n")
+              .slice(0, 7)
+              .join("\n")
+          }
           theme="external"
         />
       </Fill>
       <Fill>
         <CodePane
-          textSize={13}
+          textSize={12}
           lang="js"
           source={algebraicEffects
             .split("\n")
-            .slice(0, 28)
+            .slice(7, 36)
             .join("\n")}
           theme="external"
         />
       </Fill>
       <Fill>
         <CodePane
-          textSize={13}
+          textSize={12}
           lang="js"
           source={algebraicEffects
             .split("\n")
-            .slice(29)
+            .slice(36)
             .join("\n")}
           theme="external"
         />

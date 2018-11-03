@@ -19,9 +19,8 @@ for (let i of fibonnaci()) {
 const take = `
 function* take(iterator, n) {
   let i = 0;
-
   for (let el of iterator) {
-    if (i++ >= n) break;
+    if (i++ >= n) return;
     yield el;
   }
 }
@@ -57,9 +56,10 @@ for (let i of f) {
 }
 `.trim();
 export const lazyFibonnaciFullSnippet = `
-${fibonnaci}
 ${take}
 ${mapFilterSnippet}
+${fibonnaci}
+
 ${exampleInfiniteListSnippet}
 `.trim();
 

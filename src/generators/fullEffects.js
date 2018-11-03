@@ -1,36 +1,3 @@
-export const rngSnippet = `
-function* algorithm() {
-  let x = 0; //x0
-  const a = 25214903917;
-  const c = 11;
-  const m = Math.pow(2, 48);
-
-  while (true) {
-    yield x;
-    x = (a * x + c) % m;
-  }
-}
-`.trim();
-export const advancedIteratorSnippet = `
-function* rng() {
-  let x = 0; //x0
-  const a = 25214903917;
-  const c = 11;
-  const m = Math.pow(2, 48);
-
-  while (true) {
-    const provided = yield x;
-    if (provided != null) {
-      x = provided;
-    }
-    x = (a * x + c) % m;
-  }
-}
-const myRandom = rng()
-myRandom.next()
-myRandom.next(3)
-`.trim();
-export const cloneableSnippet = `
 function cloneable(generatorFn) {
   const values = [];
   const iterator = generatorFn();
@@ -51,14 +18,11 @@ function cloneable(generatorFn) {
     }
   };
 }
-`.trim();
-export const algebraicEffects = `
 class Effect {
   constructor(name) {
     this.symbol = Symbol(name);
   }
 }
-const Decide = new Effect("decide");
 
 function with_(handler, generatorFn) {
   const iterator = cloneable(generatorFn);
@@ -66,9 +30,12 @@ function with_(handler, generatorFn) {
     if (done) {
       const handle = handler.value || (v => v);
       return handle(value);
-    }
-    else {
-      const handle = handler[value.symbol] || (_ => { throw new Error() });
+    } else {
+      const handle =
+        handler[value.symbol] ||
+        (_ => {
+          throw new Error();
+        });
       const k = nextVal => recursionStep(iterator.clone().next(nextVal));
       return handle(k);
     }
@@ -79,6 +46,7 @@ function with_(handler, generatorFn) {
 let continue_ = function(cont, expVal) {
   return cont(expVal);
 };
+const Decide = new Effect("decide");
 let chooseTrue = {
   [Decide.symbol](k) {
     return continue_(k, true);
@@ -107,4 +75,3 @@ function* myBlock() {
 console.log(with_(chooseTrue, myBlock));
 console.log(with_(chooseMax, myBlock));
 console.log(with_(chooseAll, myBlock));
-`.trim();

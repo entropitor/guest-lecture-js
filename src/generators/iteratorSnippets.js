@@ -1,5 +1,5 @@
 export const iteratorSnippet = `
-const x = { a: 1, b: 2 };
+const x = { a: 'a', b: 'b' };
 x[Symbol.iterator] = () => {
   let i = 0;
   return {
@@ -30,10 +30,10 @@ function* myGen() {
 }
 
 const x = myGen();
+x.next();
 for (i of myGen()) {
   console.log(i);
 }
-x.next();
 `.trim();
 export const introConvertedSnippet = `
 function myGen() {
