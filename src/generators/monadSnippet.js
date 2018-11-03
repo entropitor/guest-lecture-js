@@ -1,13 +1,13 @@
-function cloneable(iteratorFn) {
+function cloneable(generatorFn) {
   const values = [];
-  const iterator = iteratorFn();
+  const iterator = generatorFn();
   return {
     next(val) {
       values.push(val);
       return iterator.next(val);
     },
     clone() {
-      const it = cloneable(iteratorFn);
+      const it = cloneable(generatorFn);
       for (value of values) {
         it.next(value);
       }

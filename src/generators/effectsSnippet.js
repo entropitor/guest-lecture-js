@@ -31,16 +31,16 @@ myRandom.next()
 myRandom.next(3)
 `.trim();
 export const cloneableSnippet = `
-function cloneable(iteratorFn) {
+function cloneable(generatorFn) {
   const values = [];
-  const iterator = iteratorFn();
+  const iterator = generatorFn();
   return {
     next(val) {
       values.push(val);
       return { ...iterator.next(val), iterator: this };
     },
     clone() {
-      const it = cloneable(iteratorFn);
+      const it = cloneable(generatorFn);
       for (value of values) {
         it.next(value);
       }
@@ -82,8 +82,8 @@ let chooseAll = {
   }
 };
 
-function with_(handler, iteratorFn) {
-  const iterator = cloneable(iteratorFn);
+function with_(handler, generatorFn) {
+  const iterator = cloneable(generatorFn);
   function recursionStep({ value, done, iterator }) {
     if (done) {
       const handle = handler.value || (v => v)
