@@ -1,4 +1,3 @@
-import CodeSlide from "spectacle-code-slide";
 import React from "react";
 
 import { Heading, Slide } from "spectacle";
@@ -8,6 +7,7 @@ import {
   objectSnippet,
   variablesSnippet
 } from "./variablesSnippet";
+import CodeSlide from "../codeslide";
 
 export default [
   <Slide>
@@ -20,7 +20,7 @@ export default [
       { loc: [0, 5], title: "Constants" },
       { loc: [6, 8], title: "Variables" },
       { loc: [9, 13], title: "Functions" },
-      { loc: [14, 16], title: "Globals" }
+      { loc: [14, 17], title: "Globals" }
     ]}
   />,
   <CodeSlide

@@ -1,6 +1,6 @@
 module.exports = {
   aliases: {
-    CodeSlide: "spectacle-code-slide"
+    // CodeSlide: "spectacle-code-slide"
   },
   namedExports: {
     spectacle: [

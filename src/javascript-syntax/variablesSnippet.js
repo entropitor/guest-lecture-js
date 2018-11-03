@@ -15,6 +15,7 @@ function fn2(x) {
 
 const now = new Date();
 const error = new Error();
+const symbol = Symbol("myName");
 `.trim();
 
 export const objectSnippet = `

@@ -51,13 +51,13 @@ const slides = [
   WhoAmI,
   JavascriptSyntax,
   Polymorphism,
-  Generators,
+  Generators
   // Promises,
   // Babel,
   // Quirks,
-  AboutDataCamp
+  // AboutDataCamp
 ]
-  .reduce((state, next) => [...state, ...next], [])
+  .reduce((acc, next) => [...acc, ...next], [])
   .map((slide, i) => React.cloneElement(slide, { key: i }));
 export default class Presentation extends React.Component {
   render() {

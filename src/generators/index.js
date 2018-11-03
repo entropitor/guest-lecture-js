@@ -1,4 +1,3 @@
-import CodeSlide from "spectacle-code-slide";
 import React from "react";
 
 import {
@@ -46,6 +45,7 @@ import {
   iteratorSnippet,
   treeSnippet
 } from "./iteratorSnippets";
+import CodeSlide from "../codeslide";
 
 const introSlides = [
   <Slide>

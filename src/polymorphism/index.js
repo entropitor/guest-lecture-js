@@ -1,4 +1,3 @@
-import CodeSlide from "spectacle-code-slide";
 import React from "react";
 
 import { BlockQuote, Cite, Heading, Notes, Quote, Slide } from "spectacle";
@@ -14,6 +13,7 @@ import {
   mixin2Snippet,
   mixinSnippet
 } from "./classSnippets";
+import CodeSlide from "../codeslide";
 
 export default [
   <Slide>
