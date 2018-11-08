@@ -43,8 +43,6 @@ const slides = [
         <ListItem>Polymorphism in JS</ListItem>
         <ListItem>Generators</ListItem>
         <ListItem>Promises</ListItem>
-        <ListItem>Babel</ListItem>
-        <ListItem>Quirks</ListItem>
       </List>
     </Slide>
   ],

@@ -53,7 +53,20 @@ const introSlides = [
   </Slide>,
   <Slide>
     <CodePane textSize={25} lang="js" source={introSnippet} theme="external" />
-    <Notes>Example generator</Notes>
+    <Notes>
+      Example generator, While custom iterators are a useful tool, their
+      creation requires careful programming due to the need to explicitly
+      maintain their internal state. Generator functions provide a powerful
+      alternative: they allow you to define an iterative algorithm by writing a
+      single function whose execution is not continuous. Generator functions are
+      written using the function* syntax. When called initially, generator
+      functions do not execute any of their code, instead returning a type of
+      iterator called a Generator. When a value is consumed by calling the
+      generator's next method, the Generator function executes until it
+      encounters the yield keyword. The function can be called as many times as
+      desired and returns a new Generator each time, however each Generator may
+      only be iterated once.
+    </Notes>
   </Slide>,
   <Slide>
     <CodePane
