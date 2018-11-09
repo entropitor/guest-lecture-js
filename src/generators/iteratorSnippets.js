@@ -1,21 +1,28 @@
 export const iteratorSnippet = `
-const x = { a: 'a', b: 'b' };
+const x = ['a', 'b', 'c'];
 x[Symbol.iterator] = () => {
   let i = 0;
   return {
     next() {
-      switch (i++) {
-        case 0:
-          return { done: false, value: x.a };
-        case 1:
-          return { done: false, value: x.b };
-        default:
-          return { done: true };
+      if (i >= x.length) {
+        return { done: true };
       }
+      return { done: false, value: x[i++] };
     }
   };
 };
 for (const i of x) {
+  console.log(i);
+}
+`.trim();
+export const iteratorGeneratorSnippet = `
+const x = ['a', 'b', 'c'];
+function * iterateMyList (arr) {
+  for (let i = 0; i < arr.length; i++) {
+    yield arr[i];
+  }
+}
+for (const i of iterateMyList(x)) {
   console.log(i);
 }
 `.trim();

@@ -49,7 +49,25 @@ const slides = [
   WhoAmI,
   JavascriptSyntax,
   Polymorphism,
-  Generators
+  Generators,
+  [
+    <Slide>
+      <Heading size={2} textColor="tertiary">
+        Questions?
+      </Heading>
+      <Heading size={4} textColor="secondary">
+        jens@datacamp.com
+      </Heading>
+    </Slide>,
+    <Slide>
+      <Heading size={2} textColor="tertiary">
+        Feedback?
+      </Heading>
+      <Heading size={4} textColor="secondary">
+        https://tinyurl.com/jsgl4cpl
+      </Heading>
+    </Slide>
+  ]
   // Promises,
   // Babel,
   // Quirks,

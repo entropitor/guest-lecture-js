@@ -42,6 +42,7 @@ import {
 import {
   introConvertedSnippet,
   introSnippet,
+  iteratorGeneratorSnippet,
   iteratorSnippet,
   treeSnippet
 } from "./iteratorSnippets";
@@ -70,12 +71,25 @@ const introSlides = [
   </Slide>,
   <Slide>
     <CodePane
-      textSize={23}
+      textSize={25}
       lang="js"
       source={iteratorSnippet}
       theme="external"
     />
     <Notes>Example iterator</Notes>
+  </Slide>,
+  <Slide>
+    <CodePane
+      textSize={25}
+      lang="js"
+      source={iteratorGeneratorSnippet}
+      theme="external"
+    />
+    <Notes>Example spreading of generator</Notes>
+  </Slide>,
+  <Slide>
+    <CodePane textSize={25} lang="js" source={treeSnippet} theme="external" />
+    <Notes>Example spreading of generator</Notes>
   </Slide>,
   <Slide>
     <CodePane textSize={25} lang="js" source={introSnippet} theme="external" />
@@ -107,10 +121,6 @@ const introSlides = [
     <Notes>
       Example generator again, can be used to explain the previous code
     </Notes>
-  </Slide>,
-  <Slide>
-    <CodePane textSize={25} lang="js" source={treeSnippet} theme="external" />
-    <Notes>Example spreading of generator</Notes>
   </Slide>
 ];
 const fibonnaciSlides = [

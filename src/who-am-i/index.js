@@ -22,5 +22,10 @@ export default [
         </List>
       </ListItem>
     </List>
+  </Slide>,
+  <Slide>
+    <Heading size={4} textColor="secondary">
+      jens@datacamp.com
+    </Heading>
   </Slide>
 ];
