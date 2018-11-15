@@ -139,6 +139,15 @@ const fibonnaciSlides = [
   </Slide>,
   <Slide>
     <CodePane
+      textSize={20}
+      lang="js"
+      source={integratedFibonnaciSnippet}
+      theme="external"
+    />
+    <Notes>Full pipeline, not single responsability</Notes>
+  </Slide>,
+  <Slide>
+    <CodePane
       textSize={25}
       lang="js"
       source={lazyFibonnaciSnippet}
@@ -168,15 +177,6 @@ const fibonnaciSlides = [
     />
     <Notes>Example thing</Notes>
   </Slide>,
-  // <Slide>
-  //   <CodePane
-  //     textSize={12}
-  //     lang="js"
-  //     source={lazyFibonnaciFullSnippet}
-  //     theme="external"
-  //   />
-  //   <Notes>Full pipeline</Notes>
-  // </Slide>,
   <Slide>
     <Layout>
       <Fill>
@@ -203,15 +203,6 @@ const fibonnaciSlides = [
       </Fill>
     </Layout>
     <Notes>Full pipeline</Notes>
-  </Slide>,
-  <Slide>
-    <CodePane
-      textSize={20}
-      lang="js"
-      source={integratedFibonnaciSnippet}
-      theme="external"
-    />
-    <Notes>Full pipeline, not single responsability</Notes>
   </Slide>
 ];
 const effectsSlides = [
