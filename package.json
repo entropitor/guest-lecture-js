@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
     "spectacle-code-slide": "^0.5.2",
     "spectacle-scripts": "2.0.0"
   },
@@ -15,6 +15,6 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "prettier": "^1.14.3"
+    "prettier": "^1.18.2"
   }
 }
