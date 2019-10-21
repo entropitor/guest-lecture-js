@@ -1,6 +1,15 @@
 import React from "react";
 
-import { BlockQuote, Cite, Heading, Notes, Quote, Slide } from "spectacle";
+import {
+  BlockQuote,
+  Cite,
+  Heading,
+  Notes,
+  Quote,
+  Slide,
+  Text,
+  Image
+} from "spectacle";
 
 import {
   changeClassAnswerSnippet,
@@ -67,6 +76,15 @@ export default [
     ]}
   />,
   <Slide>
+    <Image src={require("./simple.png")} />
+  </Slide>,
+  <Slide>
+    <Image src={require("./complex.png")} />
+  </Slide>,
+  <Slide>
+    <Text textColor="secondary">Source: http://www.objectplayground.com/</Text>
+  </Slide>,
+  <Slide>
     <Heading textSize={200}>❓</Heading>
     <Heading size={2}>How would you do multiple inheritance?</Heading>
     <Notes>
@@ -83,7 +101,7 @@ export default [
     code={mixinSnippet}
     ranges={[
       { loc: [0, 30], title: "Let's build a NinjaBird prototype" },
-      { loc: [12, 13] }
+      { loc: [12, 14] }
     ]}
   />,
   <Slide>
@@ -94,7 +112,7 @@ export default [
   <CodeSlide
     lang="js"
     code={mixin2Snippet}
-    ranges={[{ loc: [13, 20], title: "Object.create" }]}
+    ranges={[{ loc: [0, 8], title: "Object.create" }]}
   />,
   <Slide>
     <Heading textSize={200}>❓</Heading>
