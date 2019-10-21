@@ -27,7 +27,7 @@ function Person(age) {
   this.age = age;
 }
 
-Person.prototype.celebrateBday = function () {
+Person.prototype.celebrateBday = () => {
   this.age += 1;
 };
 
@@ -51,16 +51,17 @@ const Bird = {
   }
 }
 
-const NinjaBird = { ...ninja, ...bird };
+function NinjaBird () {};
+NinjaBird.prototype = {...ninja, ...bird};
 `.trim();
 export const mixin2Snippet = `
-${mixinSnippet}
 // This function exists already
 Object.create = function (prototype) {
   const obj = {}
   Object.setPrototypeOf(obj, prototype)
   return obj
 }
+const NinjaBird = {...ninja, ...bird};
 const ninjaBird = Object.create(NinjaBird);
 `.trim();
 export const changeClassTaskSnippet = `
