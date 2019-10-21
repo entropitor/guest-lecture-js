@@ -64,14 +64,10 @@ const slides = [
         Feedback?
       </Heading>
       <Heading size={4} textColor="secondary">
-        https://tinyurl.com/jsgl4cpl
+        https://tinyurl.com/cpl-javascript
       </Heading>
     </Slide>
   ]
-  // Promises,
-  // Babel,
-  // Quirks,
-  // AboutDataCamp
 ]
   .reduce((acc, next) => [...acc, ...next], [])
   .map((slide, i) => React.cloneElement(slide, { key: i }));

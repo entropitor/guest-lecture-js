@@ -19,17 +19,17 @@ const symbol = Symbol("myName");
 `.trim();
 
 export const objectSnippet = `
-const me = { age: 23, name: "Jens" };
+const me = { age: 25, name: "Jens" };
 me.age += 1;
-console.log(me); // { age: 24, name: 'Jens' }
+console.log(me); // { age: 26, name: 'Jens' }
 
 const you = { ...me, name: "Fred" };
 you.age = 21
 console.log(you); // { age: 21, name: 'Fred' } 
-console.log(me); // { age: 24, name: 'Jens' }
+console.log(me); // { age: 26, name: 'Jens' }
 
 const { age } = me;
-console.log(age); // 24
+console.log(age); // 26
 
 const { age: yourAge, ...otherValues } = you;
 console.log(yourAge); // 21
