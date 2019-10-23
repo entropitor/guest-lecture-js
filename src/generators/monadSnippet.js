@@ -33,9 +33,9 @@ function fakeCloneable(generatorFn) {
   };
 }
 `.trim();
-export const doMSnippet = `
+export const doMSnippetWithCloning = `
 function doM(monad, generatorFn) {
-  const cloneable_ = monad.forbidCloning ? fakeCloneable : cloneable;
+  const cloneable_ = monad.allowCloning ? cloneable : fakeCloneable;
   const generatorFn_ = generatorFn.bind(monad);
   const iterator = cloneable_(generatorFn_);
   function recursionStep({ value, done, iterator }) {
@@ -43,6 +43,21 @@ function doM(monad, generatorFn) {
       return value;
     } else {
       const k = val => recursionStep(iterator.clone().next(val));
+      return monad.bind(value, k);
+    }
+  }
+  return recursionStep(iterator.next());
+}
+`.trim();
+export const doMSnippet = `
+function doM(monad, generatorFn) {
+  // Allow accessing this.return by using Function.prototype.call
+  const iterator = generatorFn.call(monad);
+  function recursionStep({ value, done }) {
+    if (done) {
+      return value;
+    } else {
+      const k = val => recursionStep(iterator.next(val));
       return monad.bind(value, k);
     }
   }
@@ -97,7 +112,6 @@ console.log(doM(maybeMonad, doBlockMaybe));
 
 export const promiseMonadDefinitionSnippet = `
 const promiseMonad = {
-  forbidCloning: true,
   return(x) {
     return Promise.resolve(x);
   },
@@ -109,9 +123,22 @@ const getFromNetwork = url => {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve("hello from " + url);
-    }, 5000);
+    }, 1500);
   });
 };
+`.trim();
+export const promiseCallbackUsageSnippet = `
+function doSomethingAsyncCallback(callback) {
+  getGoogleUrl(url => {
+    fetchFromNetwork(url, google => {
+      console.log(google)
+      fetchFromNetwork("https://facebook.com", facebook => {
+        console.log(facebook)
+        callback()
+      })
+    })
+  })
+}
 `.trim();
 export const promiseNonMonadUsageSnippet = `
 function doSomethingAsync() {
