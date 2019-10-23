@@ -23,13 +23,15 @@ import {
   asyncRealSnippet,
   cloneableMonadSnippet,
   doMSnippet,
+  doMSnippetWithCloning,
   fakeCloneableSnippet,
   listMonadSnippet,
   maybeMonadDefinitionSnippet,
   maybeMonadUsageSnippet,
   promiseMonadDefinitionSnippet,
   promiseMonadUsageSnippet,
-  promiseNonMonadUsageSnippet
+  promiseNonMonadUsageSnippet,
+  promiseCallbackUsageSnippet
 } from "./monadSnippet";
 import {
   exampleInfiniteListSnippet,
@@ -222,11 +224,21 @@ const effectsSlides = [
     lang="js"
     code={advancedIteratorSnippet}
     ranges={[{ loc: [0, 16] }, { loc: [7, 11] }, { loc: [14, 17] }]}
-  />,
+  />
+];
+const efflangSlides = [
   <Slide>
     <Heading textSize={200}>🔧</Heading>
     <Heading size={2}>Let's build Eff-Lang!</Heading>
     <Notes>Let's build eff-lang in JS (http://www.eff-lang.org/)</Notes>
+  </Slide>,
+  <Slide>
+    <Heading textSize={200}>🔧</Heading>
+    <Heading size={2}>Let's NOT build Eff-Lang!</Heading>
+    <Notes>
+      Let's NOT build eff-lang in JS (http://www.eff-lang.org/), due to time
+      constraints
+    </Notes>
   </Slide>,
   <CodeSlide
     lang="js"
@@ -254,6 +266,46 @@ const effectsSlides = [
     ]}
     notes={"Algebraic effects"}
   />,
+  <Slide>
+    <Layout>
+      <Fill>
+        <CodePane
+          textSize={15}
+          lang="js"
+          source={doMSnippet}
+          theme="external"
+        />
+      </Fill>
+      <Fill>
+        <CodePane
+          textSize={15}
+          lang="js"
+          source={with_Snippet}
+          theme="external"
+        />
+      </Fill>
+    </Layout>
+  </Slide>,
+  <Slide>
+    <Layout>
+      <Fill>
+        <CodePane
+          textSize={15}
+          lang="js"
+          source={doMSnippetWithCloning}
+          theme="external"
+        />
+      </Fill>
+      <Fill>
+        <CodePane
+          textSize={15}
+          lang="js"
+          source={with_Snippet}
+          theme="external"
+        />
+      </Fill>
+    </Layout>
+  </Slide>,
   <Slide>
     <Layout>
       <Fill>
@@ -307,67 +359,25 @@ const monadSlides = [
     <CodePane
       textSize={25}
       lang="js"
-      source={listMonadSnippet}
-      theme="external"
-    />
-  </Slide>,
-  <CodeSlide
-    lang="js"
-    code={listMonadSnippet}
-    ranges={[
-      { loc: [11, 17] },
-      { loc: [0, 11] },
-      { loc: [0, 3] },
-      { loc: [3, 11] },
-      { loc: [4, 7] },
-      { loc: [7, 10] }
-    ]}
-    notes={"listMonad"}
-  />,
-  <CodeSlide
-    lang="js"
-    code={doMSnippet}
-    ranges={[
-      { loc: [0, 13] },
-      { loc: [1, 2] },
-      { loc: [2, 3] },
-      { loc: [3, 4] },
-      { loc: [4, 12] },
-      { loc: [12, 13] },
-      { loc: [5, 8] },
-      { loc: [7, 11] }
-    ]}
-    notes={"doM"}
-  />,
-  <Slide>
-    <Layout>
-      <Fill>
-        <CodePane
-          textSize={15}
-          lang="js"
-          source={doMSnippet}
-          theme="external"
-        />
-      </Fill>
-      <Fill>
-        <CodePane
-          textSize={15}
-          lang="js"
-          source={with_Snippet}
-          theme="external"
-        />
-      </Fill>
-    </Layout>
-  </Slide>,
-  <Slide>
-    <CodePane
-      textSize={25}
-      lang="js"
       source={maybeMonadDefinitionSnippet}
       theme="external"
       notes={"maybeMonad"}
     />
   </Slide>,
+  <CodeSlide
+    lang="js"
+    code={maybeMonadDefinitionSnippet}
+    ranges={[
+      { loc: [0, 1] },
+      { loc: [1, 2] },
+      { loc: [2, 14] },
+      { loc: [3, 6] },
+      { loc: [6, 13] },
+      { loc: [7, 10] },
+      { loc: [9, 12] }
+    ]}
+    notes={"listMonad"}
+  />,
   <Slide>
     <CodePane
       textSize={25}
@@ -377,6 +387,42 @@ const monadSlides = [
       notes={"maybeMonad"}
     />
   </Slide>,
+  <CodeSlide
+    lang="js"
+    code={doMSnippet}
+    ranges={[
+      { loc: [0, 13] },
+      { loc: [1, 3] },
+      { loc: [3, 11] },
+      { loc: [11, 12] },
+      { loc: [4, 7] },
+      { loc: [6, 10] }
+    ]}
+    notes={"doM"}
+  />,
+  <Slide>
+    <CodePane textSize={25} lang="js" source={doMSnippet} theme="external" />
+  </Slide>,
+  <Slide>
+    <CodePane
+      textSize={25}
+      lang="js"
+      source={promiseCallbackUsageSnippet}
+      theme="external"
+    />
+  </Slide>,
+  <CodeSlide
+    lang="js"
+    code={promiseCallbackUsageSnippet}
+    ranges={[
+      { loc: [0, 11] },
+      { loc: [1, 10] },
+      { loc: [2, 9] },
+      { loc: [3, 8] },
+      { loc: [5, 7] }
+    ]}
+    notes={"doM"}
+  />,
   <Slide>
     <CodePane
       textSize={25}
@@ -438,12 +484,34 @@ const monadSlides = [
     </Layout>
   </Slide>,
   <Slide>
+    <CodePane
+      textSize={25}
+      lang="js"
+      source={listMonadSnippet}
+      theme="external"
+    />
+  </Slide>,
+  <CodeSlide
+    lang="js"
+    code={listMonadSnippet}
+    ranges={[
+      { loc: [11, 17] },
+      { loc: [0, 11] },
+      { loc: [0, 3] },
+      { loc: [3, 11] },
+      { loc: [4, 7] },
+      { loc: [7, 10] },
+      { loc: [11, 17] }
+    ]}
+    notes={"listMonad"}
+  />,
+  <Slide>
     <Layout>
       <Fill>
         <CodePane
           textSize={15}
           lang="js"
-          source={cloneableMonadSnippet}
+          source={`${cloneableSnippet}\n${fakeCloneableSnippet}`}
           theme="external"
         />
       </Fill>
@@ -451,7 +519,8 @@ const monadSlides = [
         <CodePane
           textSize={15}
           lang="js"
-          source={fakeCloneableSnippet}
+          source={`${fakeCloneableSnippet}\n${doMSnippetWithCloning}`}
+          source={doMSnippetWithCloning}
           theme="external"
         />
       </Fill>
@@ -474,5 +543,6 @@ export default [
   ...fibonnaciSlides,
   ...effectsSlides,
   ...monadSlides,
+  ...efflangSlides,
   ...whatNotSlides
 ];
