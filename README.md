@@ -3,6 +3,7 @@
 This guest lecture was given by me in:
 
 - 2018 (commit 9b8a126f12fe9c80651dca17e463d2c45cfe5b57)
+- 2019 (commit 69a93850192c3411a37b19f812a6a13c1eba3846)
 
 ## Development
 
